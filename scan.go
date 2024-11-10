@@ -24,9 +24,9 @@ func scan(part string) {
 		ch <- ip
 		go func() {
 			defer func() {
-				wg.Done() // 将计数减1
+				wg.Done()
 			}()
-			host := <-ch // 读取chan
+			host := <-ch
 			address := host + ":" + fmt.Sprintf("%d", PORT)
 			conn, err := net.DialTimeout("tcp", address, 5*time.Second)
 			if err != nil {
